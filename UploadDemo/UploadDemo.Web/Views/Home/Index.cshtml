@@ -59,7 +59,7 @@
                     onClientLoadStart: function (e, file) {
                         var upload = $("#upload");
                         if (upload.is(":hidden")) {
-                            upload.show(); 
+                            upload.show();
                         }
                         upload.append(fileTemplate.replace(/{{id}}/g, slugify(file.name)).replace(/{{filename}}/g, file.name));
                     },
@@ -76,10 +76,18 @@
                         }
                     },
                     onServerLoad: function (e, file) {
-                        $("#" + slugify(file.name)).find(".progressbar").progressbar({ value: 100 }); 
-                     }
+                        $("#" + slugify(file.name)).find(".progressbar").progressbar({ value: 100 });
+                    },
+                    onSuccess: function (e, file, response) {
+                        console.log(e);
+                        alert(response);
+                    },
+                    onServerError: function (e, file) {
+                        console.log(e);
+                        alert("Could not upload file: " + file.name + " because " + e);
+                    }
                 });
-            
+
             });
         
         </script>
