@@ -32,7 +32,9 @@ namespace UploadDemo.Web.Controllers
                 return Content("ok");
             }
 
-            return HttpNotFound();
+            Response.TrySkipIisCustomErrors = true;
+            Response.StatusCode = 500;
+            return Content("no file selected");
         }
     }
 }
